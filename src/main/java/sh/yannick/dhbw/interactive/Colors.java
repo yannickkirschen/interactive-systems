@@ -73,7 +73,7 @@ public class Colors extends Application {
         gc.setFill(Color.BLACK);
         gc.fillRect(x - w / 2, y - h / 2, w, h);
 
-        gc.setFill(Color.valueOf("#FCFCFC"));
+        gc.setFill(Color.valueOf("#F5F5F5"));
         gc.fillRect(x - w / 2 + 2, y - h / 2 + 2, w - 4, canvasWidth / 30 + 4);
         gc.fillRect(x - w / 2 + 2, y - h / 2 + 8 + canvasWidth / 30, w - 4, h - 10 - canvasWidth / 30);
 
