@@ -26,7 +26,6 @@ public class Colors extends Application {
 
     @Override
     public void start(Stage stage) {
-
         Group root = new Group();
         Canvas canvas = new Canvas();
         root.getChildren().add(canvas);
