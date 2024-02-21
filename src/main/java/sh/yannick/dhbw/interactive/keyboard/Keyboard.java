@@ -86,7 +86,7 @@ public class Keyboard extends Application {
         double y = 50;
         for (TextCharacter typedChar : typedText) {
             x = typedChar.render(gc, x, y);
-            if (x > gc.getCanvas().getWidth()) {
+            if (x > gc.getCanvas().getWidth() - 30) {
                 x = 0;
                 y += 30;
             }
