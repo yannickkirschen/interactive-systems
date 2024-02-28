@@ -9,4 +9,5 @@ module sh.yannick.dhbw.interactive {
     exports sh.yannick.dhbw.interactive.physics;
     exports sh.yannick.dhbw.interactive.ui;
     exports sh.yannick.dhbw.interactive.audio;
+    exports sh.yannick.dhbw.interactive.speech;
 }
