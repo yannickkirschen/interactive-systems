@@ -6,6 +6,7 @@ module sh.yannick.dhbw.interactive {
 
     exports sh.yannick.dhbw.interactive;
     exports sh.yannick.dhbw.interactive.keyboard;
+    exports sh.yannick.dhbw.interactive.physics;
     exports sh.yannick.dhbw.interactive.ui;
     exports sh.yannick.dhbw.interactive.audio;
 }
