@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -24,8 +25,10 @@ import java.util.List;
  */
 public class Keyboard extends Application {
     private final List<TextCharacter> typedText = new LinkedList<>();
+
     private TextCharacter currentCharacter;
     private String currentCharAsString;
+    private boolean shift = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -59,18 +62,33 @@ public class Keyboard extends Application {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        scene.addEventHandler(KeyEvent.KEY_TYPED, evt -> {
-            if (!evt.getCharacter().equals(currentCharAsString)) {
-                currentCharacter = new TextCharacter(evt.getCharacter());
-                currentCharAsString = evt.getCharacter();
-                typedText.add(currentCharacter);
-                draw(gc);
-            }
-        });
+//        scene.addEventHandler(KeyEvent.KEY_TYPED, evt -> {
+//            if (!evt.getCharacter().equals(currentCharAsString)) {
+//                currentCharacter = new TextCharacter(evt.getCharacter());
+//                currentCharAsString = evt.getCharacter();
+//                System.out.println(currentCharAsString == null);
+//                System.out.println(currentCharAsString);
+//                typedText.add(currentCharacter);
+//                draw(gc);
+//            }
+//        });
         scene.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
+            if (evt.getCode().equals(KeyCode.SHIFT)) {
+                shift = false;
+            }
+
             currentCharacter = null;
             currentCharAsString = null;
             draw(gc);
+        });
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, evt -> {
+            if (evt.getCode().equals(KeyCode.SHIFT)) {
+                shift = true;
+            }
+            if (evt.getCode().equals(KeyCode.ENTER)) {
+                currentCharacter = new TextCharacter("");
+                currentCharAsString = "\n";
+            }
         });
 
         stage.setTitle("Interactive Systems - Exercise 4 - Keyboard");
@@ -85,7 +103,13 @@ public class Keyboard extends Application {
         double x = 0;
         double y = 50;
         for (TextCharacter typedChar : typedText) {
-            x = typedChar.render(gc, x, y);
+            if (currentCharAsString != null && currentCharAsString.equals("\n")) {
+                x = 0;
+                y += 60;
+            } else {
+                x = typedChar.render(gc, x, y);
+            }
+
             if (x > gc.getCanvas().getWidth() - 30) {
                 x = 0;
                 y += 30;

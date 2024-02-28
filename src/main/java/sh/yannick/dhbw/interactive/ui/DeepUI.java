@@ -62,7 +62,5 @@ public class DeepUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
 
